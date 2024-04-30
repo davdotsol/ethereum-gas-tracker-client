@@ -4,7 +4,7 @@ import GasPriceChart from '@/components/GasPriceChart';
 
 export default function Home() {
   return (
-    <div className="bg-light-gray-blue min-h-screen">
+    <div className="flex flex-col min-h-screen bg-light-gray-blue">
       <header className="bg-navy-blue text-white p-4 text-xl">
         Ethereum Gas Tracker Dashboard
       </header>
@@ -13,7 +13,7 @@ export default function Home() {
         <AnalyticsSummary />
       </div>
       <AdvancedAnalytics />
-      <footer className="bg-dark-blue text-white p-4 text-center">
+      <footer className="bg-dark-blue text-white p-4 text-center mt-auto">
         © 2024 Ethereum Gas Tracker. All rights reserved.
       </footer>
     </div>
