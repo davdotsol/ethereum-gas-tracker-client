@@ -2,9 +2,21 @@
 
 import { useEffect, useState } from 'react';
 
-export default function AnalyticsSummary() {
-  const [timePeriod, setTimePeriod] = useState('daily');
-  const [analytics, setAnalytics] = useState({
+interface GasData {
+  baseFeePerGas: string;
+}
+
+interface Analytics {
+  averageGasPrice: string | null;
+  medianGasPrice: string | null;
+  modeGasPrice: string | null;
+  minGasPrice: string | null;
+  maxGasPrice: string | null;
+}
+
+export default function AnalyticsSummary(): JSX.Element {
+  const [timePeriod, setTimePeriod] = useState<string>('daily');
+  const [analytics, setAnalytics] = useState<Analytics>({
     averageGasPrice: null,
     medianGasPrice: null,
     modeGasPrice: null,
@@ -16,21 +28,21 @@ export default function AnalyticsSummary() {
     fetchData(timePeriod); // Fetch data on initial render and when timePeriod changes
   }, [timePeriod]); // Adding timePeriod as a dependency
 
-  const fetchData = async (period) => {
+  const fetchData = async (period: string): Promise<void> => {
     try {
       const response = await fetch(
         `https://ethereum-gas-tracker-beta.vercel.app/api/gas-prices?period=${period}`
       );
-      const data = await response.json();
+      const data: GasData[] = await response.json();
       if (data && data.length > 0) {
-        const prices = data
+        const prices: number[] = data
           .map((item) => parseFloat(item.baseFeePerGas))
           .sort((a, b) => a - b);
-        const averagePrice = calculateAverage(prices);
-        const medianPrice = calculateMedian(prices);
-        const modePrice = calculateMode(prices);
-        const minPrice = prices[0];
-        const maxPrice = prices[prices.length - 1];
+        const averagePrice: number = calculateAverage(prices);
+        const medianPrice: number = calculateMedian(prices);
+        const modePrice: number = calculateMode(prices);
+        const minPrice: number = prices[0];
+        const maxPrice: number = prices[prices.length - 1];
 
         setAnalytics({
           averageGasPrice: averagePrice.toFixed(2),
@@ -91,21 +103,21 @@ export default function AnalyticsSummary() {
   );
 }
 
-function calculateAverage(prices) {
+function calculateAverage(prices: number[]): number {
   return prices.reduce((sum, price) => sum + price, 0) / prices.length;
 }
 
-function calculateMedian(prices) {
-  const midIndex = Math.floor(prices.length / 2);
+function calculateMedian(prices: number[]): number {
+  const midIndex: number = Math.floor(prices.length / 2);
   return prices.length % 2 !== 0
     ? prices[midIndex]
     : (prices[midIndex - 1] + prices[midIndex]) / 2;
 }
 
-function calculateMode(prices) {
-  const frequency = {};
-  let maxFreq = 0;
-  let mode = prices[0];
+function calculateMode(prices: number[]): number {
+  const frequency: Record<number, number> = {};
+  let maxFreq: number = 0;
+  let mode: number = prices[0];
 
   for (const price of prices) {
     frequency[price] = (frequency[price] || 0) + 1;
