@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Ethereum Gas Tracker Dashboard
+## Overview
+The Ethereum Gas Tracker is a robust analytics dashboard designed to display real-time and historical Ethereum gas prices, providing essential insights into transaction costs on the Ethereum network. Hosted and continuously updated, this dashboard aids users and developers in making informed decisions based on current and past market data.
 
-## Getting Started
+## Features
+The dashboard offers comprehensive metrics and analytical tools:
 
-First, run the development server:
+### Basic Statistical Measures
+- Average Gas Price: Daily and weekly averages.
+- Median Gas Price: Splits the data into two halves, reflecting typical transaction costs.
+- Mode Gas Price: Most frequent gas prices, highlighting common transaction costs.
+- Minimum and Maximum Gas Price: Observations of the lowest and highest transaction costs over selected periods.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Trend Analysis
+- Time Series Analysis: Observes trends over selected time frames.
+- Moving Average and Exponential Smoothing: Smoothens price fluctuations to underline trend directions.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Volatility Measures
+- Standard Deviation and Variance: Indicates the volatility and dispersion of gas prices.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Predictive Analytics
+- Forecasting Models: Utilizes ARIMA, LSTM, and linear regression to predict future prices.
+- Anomaly Detection: Identifies significant deviations in gas prices, signaling unusual market conditions.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Correlation Analysis
+- Transaction Volume and Network Activity Correlations: Analyzes the impact of network activities on gas prices.
 
-## Learn More
+### Aggregative Metrics
+- Percentiles and Daily Changes: Provides deeper insights into price distribution and day-to-day volatility.
 
-To learn more about Next.js, take a look at the following resources:
+### Advanced Predictive Analytics
+- Neural Network Predictions: Leverages TensorFlow.js for predicting future gas prices using historical data.
+- Time Series Forecasting: Utilizes advanced neural networks like LSTM or GRU for accurate future price predictions.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Technical Stack
+- Frontend: React.js, Next.js
+- Backend: Node.js, Express.js
+- Database: MongoDB
+- APIs: Ethereum Blockchain data
+- Deployment: Vercel
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Live Application
+Access the live Ethereum Gas Tracker Dashboard here: [Ethereum Gas Tracker](https://ethereum-gas-tracker-client.vercel.app/)
